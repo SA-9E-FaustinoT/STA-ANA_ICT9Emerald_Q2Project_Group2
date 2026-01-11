@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses Offer</title>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> 
+    <style>
+        .btn{
+            grid-column:1 / -1;
+            margin-top:6px;
+            background:var(--btn);
+            color:#fff;
+            border:none;
+            border-radius:999px;
+            padding:14px 18px;
+            font-family:Montserrat,system-ui,sans-serif;
+            font-weight:700;
+            letter-spacing:.08em;
+            font-size:12px;
+            cursor:pointer;
+            background-color: navy;
+            transition: all .15s ease, transform .08s ease;
+        }
+        .btn:hover{background:var(--btnHover)}
+        .btn:active{transform:translateY(1px)}
+
+        body {
+            font-family:Montserrat,system-ui,sans-serif;
+            background-image: url("https://i.ibb.co/rTG3FVv/Bg.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: repeat;
+            line-height: 1.6;
+            color: #333;
+            padding: 20px;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 25px;
+            padding-bottom: 8px;
+        }
+        
+        .section-title.programs-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1a237e;
+            border-bottom: 3px solid #1a237e;
+            letter-spacing: 0.5px;
+        }
+        
+        .section-title.designs-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #283593;
+            border-bottom: 2px solid #283593;
+            letter-spacing: 0.3px;
+        }
+        
+        .classroom-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #1565c0;
+            margin-bottom: 12px;
+        }
+        
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .programs-grid .program-item:last-child {
+            grid-column: 1 / -1;
+            justify-self: center;
+            max-width: 280px;
+        }
+        
+        .program-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .program-image-box {
+            width: 100%;
+            height: 180px;
+            background-color: #e9ecef;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            margin-bottom: 12px;
+            transition: transform 0.3s;
+        }
+        
+        .program-image-box:hover {
+            transform: translateY(-4px);
+        }
+        
+        .program-image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .program-label {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2c3e50;
+            padding: 8px;
+        }
+        
+        .classroom-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            height: 100%;
+            margin-bottom: 25px;
+        }
+        
+        .classroom-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .classroom-img {
+            width: 100%;
+            height: 220px;
+            background-color: #e9ecef;
+            border-bottom: 1px solid #dee2e6;
+            overflow: hidden;
+        }
+        
+        .classroom-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .classroom-body {
+            padding: 20px;
+        }
+        
+        .classroom-text {
+            color: #555;
+            font-size: 0.95rem;
+        }
+        
+        .intro-paragraph {
+            font-size: 1.05rem;
+            color: #444;
+            margin-bottom: 25px;
+            padding: 18px;
+            background-color: #f0f7ff;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+        
+        hr {
+            margin: 35px 0;
+            border: none;
+            border-top: 2px solid #dee2e6;
+        }
+        
+        @media (max-width: 768px) {
+            .programs-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .programs-grid .program-item:last-child {
+                grid-column: 1;
+                max-width: 100%;
+            }
+            
+            .program-image-box {
+                height: 160px;
+            }
+            
+            .classroom-img {
+                height: 200px;
+            }
+            
+            .intro-paragraph {
+                padding: 15px;
+            }
+            
+            .section-title.programs-title {
+                font-size: 1.7rem;
+            }
+            
+            .section-title.designs-title {
+                font-size: 1.5rem;
+            }
+        }
+        
+        @media (min-width: 768px) and (max-width: 991px) {
+            .programs-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .programs-grid .program-item:last-child {
+                grid-column: 1 / 3;
+                justify-self: center;
+            }
+        }
+        
+        @media (min-width: 992px) {
+            .programs-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .programs-grid .program-item:last-child {
+                grid-column: 1 / 3;
+                justify-self: center;
+            }
+        }
+
+        @media(max-width:720px){
+      h1{font-size:2.3rem;}
+      .bf1,.bf2,.bf3,.bf4,.bf5{display:none;}
+        }
+    </style>
+  <nav class="navbar navbar-expand-sm navbar-light bg-light navbar-front shadow-sm">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="https://static1.squarespace.com/static/664c7ae50eea9c731b37e817/t/66a84103b86799259e31ff25/1722302723941/Header.png?format=1500w" alt="Logo" style="width:150px;">
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar" aria-controls="mynavbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="mynavbar">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home Page</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="page2.html">Courses Offer</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="page3.html">Enroll Now</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="page4.html">Contact Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="page5.html">About the Group Member</a>
+          </li>
+        </ul>
+
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-primary" type="button">My Portal</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+</head>
+
+<body>
+    <div class="container">
+        <section class="mb-4">
+            <h2 class="section-title programs-title">Programs</h2>
+            
+            <div class="programs-grid">
+                <div class="program-item">
+
+                    <div class="program-image-box">
+                        <img src="https://images.squarespace-cdn.com/content/v1/664c7ae50eea9c731b37e817/f367c9fa-eafd-4481-ad5e-3f7bf6069fc6/O.B.+Montessori+Center%2C+Casa+Program?format=2500w" alt="Casa Program">
+                    </div>
+                    <div class="program-label"><a href="https://obmontessori.edu.ph/casa" target="_blank">Casa (Ages 3–5)</a></div>
+                </div>
+                
+                <div class="program-item">
+                    <div class="program-image-box">
+                        <img src="https://images.squarespace-cdn.com/content/v1/664c7ae50eea9c731b37e817/15317fb6-cf4e-441e-9094-7c11c26b4fd2/O.B.+Montessori+Center%2C+Primary+Program?format=2500w" alt="Primary Program">
+                    </div>
+                    <div class="program-label"><a href="https://obmontessori.edu.ph/primary" target="_blank">Primary Grade School (Ages 6–8)</a></div>
+                </div>
+                
+                <div class="program-item">
+                    <div class="program-image-box">
+                        <img src="https://images.squarespace-cdn.com/content/v1/664c7ae50eea9c731b37e817/c6e672dc-a481-443e-ba44-0c997e79147a/O.B.+Montessori+Center%2C+Intermediate+Program?format=2500w" alt="Intermediate Program">
+                    </div>
+                    <div class="program-label"><a href="https://obmontessori.edu.ph/intermediate-grade-school">Intermediate Grade School (Ages 9–12)</a></div>
+                </div>
+                
+                <div class="program-item">
+                    <div class="program-image-box">
+                        <img src="https://images.squarespace-cdn.com/content/v1/664c7ae50eea9c731b37e817/be8a19b1-6fa9-4d93-83f3-cccbfed8c577/JAR_3329a.jpg?format=2500w" alt="Junior High Program">
+                    </div>
+                    <div class="program-label"><a href="https://obmontessori.edu.ph/junior-high-school" target="_blank">Junior High School (Ages 13–16)</a></div>
+                </div>
+                
+                <div class="program-item">
+                    <div class="program-image-box">
+                        <img src="https://images.squarespace-cdn.com/content/v1/664c7ae50eea9c731b37e817/94a0554e-f0cc-4c44-a0b2-7cb83b863254/SENIOR+HIGH+SCHOOL++PROGRAM+-+HERO+IMAGE+-+RAF09579.JPG?format=2500w" alt="Senior High Program">
+                    </div>
+                    <div class="program-label"><a href="https://obmontessori.edu.ph/senior-high-school" target="_blank">Senior High School (Ages 17–18)</a></div>
+                </div>
+            </div>
+        </section>
+
+        <hr>
+
+        <section class="mb-4">
+            <h2 class="section-title designs-title">Designs of Classrooms</h2>
+            
+            <div class="intro-paragraph">
+                Welcome to classrooms where design meets education! Created by the NAZARENO/LICHAUCO team, our spaces bring Dr. Maria Montessori's vision to life with materials and layouts that encourage independent learning, teamwork, creativity, and hands-on exploration, all the ingredients for student success.
+            </div>
+        </section>
+
+        <section class="row g-4 mb-4">
+            <div class="col-lg-4 col-md-6">
+                <div class="classroom-card">
+                    <div class="classroom-img">
+                        <img src="https://images.squarespace-cdn.com/content/v1/664c7ae50eea9c731b37e817/1fd57c3f-82a0-49b6-a003-074168d2f92f/OBMC+CASA+classroom+1.jpg?format=2500w" alt="Casa Classroom">
+                    </div>
+                    <div class="classroom-body">
+                        <h3 class="classroom-title">Casa Classrooms</h3>
+                        <p class="classroom-text">
+                            Discover a natural sanctuary! Casa classrooms use basic shapes and soothing colors to recreate the feeling of being outdoors, with gentle nods to trees, soil, and sunlight that make learning feel both peaceful and exciting.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="classroom-card">
+                    <div class="classroom-img">
+                        <img src="https://images.squarespace-cdn.com/content/v1/664c7ae50eea9c731b37e817/fd406adc-c264-4980-af9d-c7a2801d454f/OBMC+Primary+classroom+1.jpg?format=2500w" alt="Primary Classroom">
+                    </div>
+                    <div class="classroom-body">
+                        <h3 class="classroom-title">Primary Classrooms</h3>
+                        <p class="classroom-text">
+                            Enter a living ecosystem! Primary classrooms transform into conceptual biospheres where water, earth, and air elements come alive on the walls, enhanced by cleverly placed mirrors that catch the light like bursts of sunshine.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="classroom-card">
+                    <div class="classroom-img">
+                        <img src="https://images.squarespace-cdn.com/content/v1/664c7ae50eea9c731b37e817/e83e8c94-7d20-40d9-ae74-54bf127d982e/OBMC+Intermediate+classroom+3.jpg?format=2500w" alt="Intermediate Classroom">
+                    </div>
+                    <div class="classroom-body">
+                        <h3 class="classroom-title">Intermediate Classrooms</h3>
+                        <p class="classroom-text">
+                            Walk with the innovators! These classrooms highlight scientific trailblazers from da Vinci's Renaissance genius to Tesla's electrical wonders and Letitia Mumford Geer's medical innovations, a timeline of brilliance that inspires curious minds.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="classroom-card">
+                    <div class="classroom-img">
+                        <img src="https://images.squarespace-cdn.com/content/v1/664c7ae50eea9c731b37e817/3408d4be-f061-4a48-8cc0-ab73b06a4d8b/OBMC+Junior+High+School+classroom+1.jpg?format=2500w" alt="Junior High Classroom">
+                    </div>
+                    <div class="classroom-body">
+                        <h3 class="classroom-title">Junior High Classrooms</h3>
+                        <p class="classroom-text">
+                            Explore design from around the world! Junior High spaces feature standout creations including Zaha Hadid's architectural wonders, the iconic Philippine jeepney, and the Eames' classic furniture, perfect for sparking design inspiration and cultural conversation.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="classroom-card">
+                    <div class="classroom-img">
+                        <img src="https://images.squarespace-cdn.com/content/v1/664c7ae50eea9c731b37e817/6ee3d240-5b09-4e87-b075-ca050d77c992/OBMC+Senior+High+School+classroom+7.jpeg?format=2500w" alt="Senior High Classroom">
+                    </div>
+                    <div class="classroom-body">
+                        <h3 class="classroom-title">Senior High Classrooms</h3>
+                        <p class="classroom-text">
+                            Celebrate Filipino artistic excellence! Each Senior High classroom pays tribute to contemporary masters: Roberto Chabet, Nina Saguil, and Leo Valledor, creating inspiring environments where students can appreciate art history while developing their own creative voices.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <hr>
+  <footer class="bg-white footer-front">
+    <div class="container-fluid py-4">
+      <div class="row align-items-start">
+        <div class="col-sm-4 mb-3 mb-sm-0">
+          <div class="left-align-container text-align-left">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcHVuqgJPs1mFipnjsVwsFIYiYwTaulS-1_w&s" alt="O.B. Montessori Center" style="max-width:150px;">
+          </div>
+        </div>
+
+        <div class="col-sm-4 mb-3 mb-sm-0" style="text-align:center;">
+          <p class="fw-bold mb-3">Location</p>
+          <ul class="list-unstyled m-0 p-0">
+            <li><a href="https://www.google.com/maps/search/?api=1&query=Angeles+City,+Pampanga">Angeles City, Pampanga</a></li>
+            <li><a href="https://www.google.com/maps/search/?api=1&query=Fairview,+Quezon+City">Fairview, Quezon City</a></li>
+            <li><a href="https://www.google.com/maps/search/?api=1&query=Greenhills,+San+Juan+City">Greenhills, San Juan City</a></li>
+            <li><a href="https://www.google.com/maps/search/?api=1&query=B.F.+Homes,+Las+Piñas+City">B.F. Homes, Las Piñas City</a></li>
+            <li><a href="https://www.google.com/maps/search/?api=1&query=Sta.+Ana,+Manila+City">Sta. Ana, Manila City</a></li>
+          </ul>
+        </div>
+
+        <div class="col-sm-4" style="text-align:right;">
+          <p class="fw-bold mb-3">Contact</p>
+          <p class="mb-2">+63 2 8722 9720 to 26</p>
+          <a href="mailto:info@obmontessori.edu.ph">info@obmontessori.edu.ph</a>
+          <br>
+            <a href="https://www.facebook.com/obmcofficial/" target="_blank" class="text-dark me-2"><i class="bi bi-facebook"></i></a>
+          <a href="https://www.youtube.com/channel/UCqfx_-uvSz9wJvyQj6KvGFQ" target="_blank" class="text-dark me-2"><i class="bi bi-youtube"></i></a>
+          <a href="https://www.instagram.com/obmontessoriofficial/?igsh=MXM5YWI5bzAzcHE3aw%3D%3D" target="_blank" class="text-dark me-2"><i class="bi bi-instagram"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-primary text-white text-center py-3 mt-4 border-top">
+      <p class="m-0">
+        NPC Seal of Registration |
+        <a href="https://obmontessori.edu.ph/obmc-privacy-policy" target="_blank" class="text-white text-decoration-underline">Privacy Policy</a>
+        | © 2025 O.B. Montessori Center. All Rights Reserved.
+      </p>
+    </div>
+  </footer>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</html>
